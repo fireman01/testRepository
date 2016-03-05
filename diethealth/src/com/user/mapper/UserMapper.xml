@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.mapper.UserMapper">
+  <select id="checkUser" parameterType="object" resultType="map">
+		select t.* from user_account t where t.username = #{username}
+	</select>
+	<!-- 检查登录    -->
+	<select id="loginCheck" parameterType="object"
+		resultType="int">
+		SELECT count(1) FROM user_account t where t.username = #{username} and t.password = #{password}
+	</select>
+	<insert id="saveUser" parameterType="object">
+	INSERT INTO user_account(resource_id,username,password,email)
+	            values(#{resource_id},#{username},#{password},#{email})
+	</insert>
+	<select id="showUserInfo" parameterType="object" resultType="map">
+	select USERNAME, XBM, GXQM, EMAIL,CSRQ,ZYM,XZZ,GX,GXQM,PH, TX FROM user_account WHERE USERNAME = #{account}
+	</select>
+	 <update id="updateUser" parameterType="object">
+	UPDATE user_account SET XBM = #{xbm}, EMAIL = #{email},GXQM = #{gxqm},CSRQ=#{csrq},XZZ=#{address},PH=#{list}
+	WHERE USERNAME = #{account}
+	</update> 
+	<select id="getPHList1" parameterType="object" resultType="map">
+		select t.* from comm_code_ph t where t.resource_id like '1%'
+	</select>
+	<select id="getPHList2" parameterType="object" resultType="map">
+		select t.* from comm_code_ph t where t.resource_id like '2%'
+	</select>
+	<select id="getPHList3" parameterType="object" resultType="map">
+		select t.* from comm_code_ph t where t.resource_id like '3%'
+	</select>
+	<select id="getPHList4" parameterType="object" resultType="map">
+		select t.* from comm_code_ph t where t.resource_id like '4%'
+	</select>
+	<select id="getPHList5" parameterType="object" resultType="map">
+		select t.* from comm_code_ph t where t.resource_id like '5%'
+	</select>
+	<select id="getPHlist" parameterType="object" resultType="map">
+		select t.* from comm_code_ph t where t.resource_id in 
+     <foreach item="phlist" index="index" collection="list"  open="(" separator="," close=")">
+                     #{phlist}
+            </foreach>
+	</select>
+</mapper>

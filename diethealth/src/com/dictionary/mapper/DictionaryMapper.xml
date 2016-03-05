@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="com.dictionary.mapper.DictionaryMapper">
+
+   	
+   	<!-- 取得字典表所有数据     -->
+	<select id="getDictionary" parameterType="object" resultType="map">
+		SELECT #{tablename} AS TYPE ,${valuecol} AS 'KEY' ,${namecol} AS VALUE, '1' AS IS_ENABLE  
+          FROM ${tablename}
+         WHERE ${wherestr}
+      ORDER BY ${orderstr} 
+	</select>
+	
+	  <!-- 获得所属分类列表   -->
+    <select id="getSsflList" parameterType="object" resultType="java.util.Map">
+		select t.RESOURCE_ID,t.TYPE_NAME from comm_code_ssfl t where 1=1 and t.resource_id like '${type}%'
+	</select>
+	<!--  获得省份列表     -->
+	<select id="getSflist" parameterType="object" resultType="java.util.Map">
+		select t.RESOURCE_ID,t.AREA_NAME from comm_code_area t where t.RESOURCE_ID like '%0000'
+	</select>
+	<!--  获得城市列表     -->
+	<select id="getCslist" parameterType="object" resultType="java.util.Map">
+		select t.RESOURCE_ID,t.AREA_ABBR from comm_code_area t where 
+        LEFT(t.RESOURCE_ID,2) = SUBSTRING(#{sfid},1,2) 
+        AND RIGHT(t.RESOURCE_ID,2) = "00" AND SUBSTR(t.RESOURCE_ID,3,2)!="00"
+	</select>
+	<!-- 获得所在地    -->
+	<select id="getDdmlist" parameterType="object" resultType="java.util.Map">
+		select t.RESOURCE_ID,t.AREA_NAME from comm_code_area t where 1=1
+	</select>
+	 
+</mapper>
