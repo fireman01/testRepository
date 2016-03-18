@@ -13,40 +13,5 @@ public interface DictionaryMapper {
 	 * @param param
 	 * @return
 	 */
-	public List<Map<String, Object>> getDictionary(Map<String, Object> param);
-	/**
-	 *   <p>【获得所属分类列表】</p>
-	 *
-	 * @author 林军雄  2015年1月6日 
-	 *
-	 * @return
-	 */
-	public List<Map<String, Object>> getSsflList(Map<String, Object> param);
-	
-	/**
-	 *   <p>【获得省份列表】</p>
-	 *
-	 * @author 林军雄  2015年1月6日 
-	 *
-	 * @return
-	 */
-	public List<Map<String, Object>> getSflist();
-	
-	/**
-	 *   <p>【获得城市列表】</p>
-	 *
-	 * @author 林军雄  2015年1月6日 
-	 *
-	 * @return
-	 */
-	public List<Map<String, Object>> getCslist(Map<String, Object> param);
-	/**
-	 *   <p>【获得所在地列表】</p>
-	 *
-	 * @author 林军雄  2015年1月7日 
-	 *
-	 * @param param
-	 * @return
-	 */
-	public List<Map<String, Object>> getDdmlist();
+	public List<Map<String, Object>> getFoods();
 }

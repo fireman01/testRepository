@@ -15,79 +15,172 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+<script type="text/javascript">
+var path = "<%=path %>";
+</script>
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/css/weui.min.css">
+	<link rel="stylesheet" type="text/css"
+	href="<%=path %>/css/example.css">
+	<script type="text/javascript" src="<%=path %>/js/zepto.min.js"></script>
+	<script type="text/javascript" src="<%=path %>/js/diet.js"></script>
 </head>
 
 <body>
-	<div class="weui_cells weui_cells_form">
-		<div class="weui_cell">
-			<div class="weui_cell_hd">
-				<label class="weui_label">姓名：</label>
+<!--  <div class="hd"> -->
+        <h1 class="page_title">饮食录入</h1>
+<!--     </div> -->
+	<div class=" weui_cells_form">
+		<div class="weui_cells">
+			<div class="weui_cell weui_cell_select weui_select_after">
+				<div class="weui_cell_hd">餐饮类型</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<select class="weui_select" name="select2">
+						<option value="1">早餐</option>
+						<option value="2">午餐</option>
+						<option value="3">晚餐</option>
+					</select>
+				</div>
 			</div>
-			<div class="weui_cell_bd weui_cell_primary">
-				<input class="weui_input" placeholder="请输入姓名" />
-			</div>
-		</div>
-		<div class="weui_cell">
-			<div class="weui_cell_hd">
-				出生日期：
-			</div>
-			<div class="weui_cell_bd weui_cell_primary">
-				<input class="weui_input" type="date" value="1990-01-01" />
-			</div>
-		</div>
-		<div class="weui_cell">
-			<div class="weui_cell_hd">
-				<label class="weui_label">身高：</label>
-			</div>
-			<div class="weui_cell_bd weui_cell_primary">
-				<input class="weui_input" placeholder="请输入身高（cm）" />
-			</div>
-		</div>
-		<div class="weui_cell">
-			<div class="weui_cell_hd">
-				孕前体重：
-			</div>
-			<div class="weui_cell_bd weui_cell_primary">
-				<input class="weui_input" placeholder="请输入孕前体重（kg）" />
+		<!-- </div>
+		<div class="weui_cells"> -->
+			<div class="weui_cell">
+				<div class="weui_cell_bd weui_cell_primary">
+					<p>目标：80千卡</p>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<p>总能量：80千卡</p>
+				</div>
 			</div>
 		</div>
-		<div class="weui_cell">
-			<div class="weui_cell_hd">
-				当前体重：
-			</div>
-			<div class="weui_cell_bd weui_cell_primary">
-				<input class="weui_input" placeholder="请输入当前体重（kg）" />
+		<div class="weui_cells_title">
+			主食<a href="javascript:;" onclick="addFood();" style="float:right;"><img alt="添加"
+				src="<%=path %>/image/add.png" width="20px;" heigth="20px;"></a>
+		</div>
+		<div class="weui_cells" id="mianfoodpanel">
+			<div class="weui_cell weui_cell_select weui_select_before">
+				<div class="weui_cell_hd">
+					<select class="weui_select" name="mainfoodselect">
+						<!-- <option value="1">米饭</option>
+						<option value="2">面食</option>
+						<option value="3">火锅</option> -->
+					</select>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input class="weui_input" type="number" placeholder="请输入食量（克）" />
+				</div>
 			</div>
 		</div>
-		<div class="weui_cell">
-			<div class="weui_cell_hd">
-				工作强度：
-			</div>
-			 <div class="weui_cell_bd weui_cell_primary">
-                    <select class="weui_select" name="select2">
-                        <option value="1">轻度劳动</option>
-                        <option value="2">中度劳动</option>
-                        <option value="3">重度劳动</option>
-                    </select>
-                </div>
+		<div class="weui_cells_title">
+			肉类<a href="javascript:;" style="float:right;"><img alt="添加"
+				src="<%=path %>/image/add.png" width="20px;" heigth="20px;"></a>
 		</div>
-		<div class="weui_cell">
-			<div class="weui_cell_hd">
-				<label class="weui_label">孕期：</label>
-			</div>
-			<div class="weui_cell_bd weui_cell_primary">
-				<input class="weui_input" placeholder="请输入孕期周数" />
-			</div>
-		</div>
-		<div class="weui_btn_area">
-            <a class="weui_btn weui_btn_primary" href="javascript:" id="showTooltips">确定</a>
-        </div>
-	</div>
+		<div class="weui_cells">
 
+			<div class="weui_cell weui_cell_select weui_select_before">
+				<div class="weui_cell_hd">
+					<select class="weui_select" name="select2">
+						<option value="1">牛肉</option>
+						<option value="2">猪肉</option>
+						<option value="3">鸡肉</option>
+					</select>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input class="weui_input" type="number" placeholder="请输入食量（克）" />
+				</div>
+			</div>
+		</div>
+		<div class="weui_cells_title">
+			蔬菜<a href="javascript:;" style="float:right;"><img alt="添加"
+				src="<%=path %>/image/add.png" width="20px;" heigth="20px;"></a>
+		</div>
+		<div class="weui_cells">
+			<div class="weui_cell weui_cell_select weui_select_before">
+				<div class="weui_cell_hd">
+					<select class="weui_select" name="select2">
+						<option value="1">青菜</option>
+						<option value="2">香菜</option>
+						<option value="3">胡萝卜</option>
+					</select>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input class="weui_input" type="number" placeholder="请输入食量（克）" />
+				</div>
+			</div>
+		</div>
+
+		<div class="weui_cells_title">
+			饮品<a href="javascript:;" style="float:right;"><img alt="添加"
+				src="<%=path %>/image/add.png" width="20px;" heigth="20px;"></a>
+		</div>
+		<div class="weui_cells">
+
+			<div class="weui_cell weui_cell_select weui_select_before">
+				<div class="weui_cell_hd">
+					<select class="weui_select" name="select2">
+						<option value="1">牛奶</option>
+						<option value="2">酸奶</option>
+					</select>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input class="weui_input" type="number" placeholder="请输入食量（克）" />
+				</div>
+			</div>
+		</div>
+		<div class="weui_cells_title">
+			坚果<a href="javascript:;" style="float:right;"><img alt="添加"
+				src="<%=path %>/image/add.png" width="20px;" heigth="20px;"></a>
+		</div>
+		<div class="weui_cells">
+
+			<div class="weui_cell weui_cell_select weui_select_before">
+				<div class="weui_cell_hd">
+					<select class="weui_select" name="select2">
+						<option value="1">核桃</option>
+						<option value="2">花生</option>
+					</select>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input class="weui_input" type="number" placeholder="请输入食量（克）" />
+				</div>
+			</div>
+		</div>
+		<div class="weui_cells_title">
+			水果<a href="javascript:;" style="float:right;"><img alt="添加"
+				src="<%=path %>/image/add.png" width="20px;" heigth="20px;"></a>
+		</div>
+		<div class="weui_cells">
+
+			<div class="weui_cell weui_cell_select weui_select_before">
+				<div class="weui_cell_hd">
+					<select class="weui_select" name="select2">
+						<option value="1">苹果</option>
+						<option value="2">香蕉</option>
+					</select>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input class="weui_input" type="number" placeholder="请输入食量（克）" />
+				</div>
+			</div>
+		</div>
+		<div class="weui_cells_title">备注</div>
+		<div class="weui_cell">
+			<div class="weui_cell_bd weui_cell_primary">
+				<textarea class="weui_textarea" placeholder="请输入备注信息" rows="3"></textarea>
+				<div class="weui_textarea_counter">
+					<span>0</span>/200
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="weui_btn_area">
+		<a class="weui_btn weui_btn_primary" href="javascript:"
+			id="showTooltips">确定</a> <a href="javascript:;"
+			class="weui_btn weui_btn_warn">取消</a>
+	</div>
+	
 </body>
 </html>

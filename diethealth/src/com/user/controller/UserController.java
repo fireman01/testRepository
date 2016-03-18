@@ -50,6 +50,16 @@ import com.user.service.UserService;
 			
 		}
 		
+		@RequestMapping("/bindUser")
+		public  String bindUser(HttpServletRequest request){
+			Object obj = request.getParameterMap();
+			System.out.println(obj);
+			return "user/bindUser";
+			
+		}
+		
+		
+		
 		@RequestMapping("/user_check")
 		public  void check(HttpServletRequest request,HttpServletResponse response) throws IOException{
 			Map<String, Object> map = FormDataCollectUtil.getInstance().getFormData(request); 

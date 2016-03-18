@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.common.util.FormDataCollectUtil;
+import com.common.util.FormatUtil;
 import com.dictionary.service.DictionaryService;
 
 @Controller
@@ -28,26 +29,9 @@ public class DictionaryController {
 	@Autowired
 	private DictionaryService service;
 	
-	@RequestMapping("/getDictionary")
+	@RequestMapping("/getFoods")
 	public void getDictionary(HttpServletRequest request,HttpServletResponse response){
-		List<Map<String, Object>> paramMap  = new ArrayList<Map<String,Object>>();
-		JSONObject jsonObject = JSONObject.fromObject(request.getParameter("tablelist"));
-		JSONArray jsons = JSONArray.fromObject(jsonObject.get("list"));
-		 for (Object o : jsons)
-	        {
-	            JSONObject jsonNode = JSONObject.fromObject(o);
-	            JSONObject jsontemp = JSONObject.fromObject(jsonNode.get("map"));
-	            Map<String, Object> param = new HashMap<String, Object>();
-	            param.put("table",jsontemp.getString("table"));
-	            param.put("value", jsontemp.getString("value"));
-	            param.put("name", jsontemp.getString("name"));
-	            param.put("order", jsontemp.getString("order"));
-	            param.put("where", jsontemp.getString("where"));
-	            //...
-	            paramMap.add(param);
-	        }
-		List<Map<String, Object>> list = service.getDictionary(paramMap);
-		JSONArray jsonarray = JSONArray.fromObject(list);
+		JSONArray jsonarray = FormatUtil.formatList2JsonArray(service.getFoods());
 		response.setContentType("text/json charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
 		try {
@@ -55,15 +39,6 @@ public class DictionaryController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	@RequestMapping("/cityList")
-	public void getCity(HttpServletRequest request,HttpServletResponse response ) throws IOException{
-		Map<String, Object> map = FormDataCollectUtil.getInstance().getFormData(request);
-		List<Map<String,Object>> list = service.getCslist(map);
-		JSONArray jsonarray = JSONArray.fromObject(list);
-		response.setContentType("text/json charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(jsonarray.toString());
 	}
 	
 }

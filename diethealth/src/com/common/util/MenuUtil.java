@@ -15,7 +15,9 @@ import net.sf.json.JSONObject;
  *
  */
 public class MenuUtil {
-
+	
+	private static String APPID = "wx84ee0f61c8ab5c10";
+	private static String APPSECRET = "00a9b2f6be0f56a6c123b2e677a1d634";
 	 /**
      * 获得ACCESS_TOKEN
     * @Title: getAccess_token
@@ -26,9 +28,6 @@ public class MenuUtil {
      */
     private static String getAccess_token(){  
           
-        String APPID = "wx84ee0f61c8ab5c10";
-        String APPSECRET = "00a9b2f6be0f56a6c123b2e677a1d634";
-         
           String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+ APPID + "&secret=" +APPSECRET;
           String accessToken = null;
          try {
@@ -70,11 +69,13 @@ public class MenuUtil {
     * @throws
      */
     public static String createMenu() {
-      String menu = "{\"button\":[{\"type\":\"view\",\"name\":\"我的业务\",\"url\":\"http://www.baidu.com\"},{\"type\":\"click\",\"name\":\"健康资讯\",\"key\":\"healthMsg\"}]}";
-         
+//      String menu = "{\"button\":[{\"type\":\"view\",\"name\":\"我的业务\",\"url\":\"http://rrgcll2mwr.proxy.qqbrowser.cc/diethealth/user/bindUser\"},{\"type\":\"click\",\"name\":\"健康资讯\",\"key\":\"healthMsg\"}]}";
         //此处改为自己想要的结构体，替换即可
         String access_token= getAccess_token();
- 
+        String menu = "{\"button\":[{\"type\":\"view\",\"name\":\"我的业务\",\"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?"
+        		+ "appid="+APPID+"&redirect_uri=http://rrgcll2mwr.proxy.qqbrowser.cc/diethealth/user/bindUser&response_type=code&scope=snsapi_base"
+        				+ "&state=STATE#wechat_redirect\"},{\"type\":\"click\",\"name\":\"健康资讯\",\"key\":\"healthMsg\"}]}";
+        
         String action = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="+access_token;
         try {
            URL url = new URL(action);
@@ -150,7 +151,6 @@ public class MenuUtil {
    }
     
     public static void main(String[] args) {
-         
         System.out.println(createMenu());
      
     }
