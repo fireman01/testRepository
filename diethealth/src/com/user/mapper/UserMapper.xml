@@ -2,43 +2,99 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.UserMapper">
   <select id="checkUser" parameterType="object" resultType="map">
-		select t.* from user_account t where t.username = #{username}
+		SELECT * FROM patient t where t.username = #{username} and t.password = #{password}
 	</select>
-	<!-- 检查登录    -->
-	<select id="loginCheck" parameterType="object"
-		resultType="int">
-		SELECT count(1) FROM user_account t where t.username = #{username} and t.password = #{password}
+	<select id="checkDoctor" parameterType="object" resultType="map">
+		SELECT * FROM doctor t where t.d_id = #{username} and t.password = #{password}
 	</select>
 	<insert id="saveUser" parameterType="object">
-	INSERT INTO user_account(resource_id,username,password,email)
-	            values(#{resource_id},#{username},#{password},#{email})
+	INSERT INTO patient(p_id,username,name,birthday,height,strength,pregnancy,weight,prepregnancyWeight,password,email,diabetesType,state)
+	            values(#{p_id},#{username},#{name},#{birthday},#{height},#{strength},#{pregnancy},#{weight},#{prepregnancyWeight},#{password},#{email},#{diabetesType},'1')
 	</insert>
 	<select id="showUserInfo" parameterType="object" resultType="map">
-	select USERNAME, XBM, GXQM, EMAIL,CSRQ,ZYM,XZZ,GX,GXQM,PH, TX FROM user_account WHERE USERNAME = #{account}
+	select * FROM patient WHERE p_id = #{pId}
 	</select>
-	 <update id="updateUser" parameterType="object">
-	UPDATE user_account SET XBM = #{xbm}, EMAIL = #{email},GXQM = #{gxqm},CSRQ=#{csrq},XZZ=#{address},PH=#{list}
-	WHERE USERNAME = #{account}
+ 	<select id="checkDoctorById" parameterType="object" resultType="int">
+		SELECT count(*) FROM doctor t where t.d_id = #{dId}
+	</select>
+	<select id="showDoctorInfo" parameterType="object" resultType="map">
+	select * FROM doctor WHERE d_id = #{dId}
+	</select>
+	
+	 <delete id="deleteDoctorInfo">
+     DELETE FROM doctor WHERE d_id = #{dId}
+    </delete>
+    
+   <insert id="saveDoctorInfo" parameterType="object">
+	INSERT INTO doctor(d_id,name,office,phone,password)
+	            values(#{dId},#{name},#{office},#{phone},#{password})
+	</insert>
+	
+	<update id="updateDoctorInfo" parameterType="object">
+	UPDATE doctor SET name = #{name},office = #{office},phone=#{phone},password=#{password}
+	WHERE d_id = #{dId}
 	</update> 
-	<select id="getPHList1" parameterType="object" resultType="map">
-		select t.* from comm_code_ph t where t.resource_id like '1%'
+	
+	<update id="updateUser" parameterType="object">
+	UPDATE patient SET username = #{username},name = #{name},birthday=#{birthday},height=#{height},strength=#{strength},pregnancy=#{pregnancy},
+	weight=#{weight},prepregnancyWeight=#{prepregnancyWeight},password=#{password},doctorId=#{doctorId},email=#{email},diabetesType=#{diabetesType}
+	WHERE p_id = #{pId}
+	</update> 
+	
+	 <select id="getDoctorList" parameterType="object" resultType="map">
+		SELECT * FROM doctor 
 	</select>
-	<select id="getPHList2" parameterType="object" resultType="map">
-		select t.* from comm_code_ph t where t.resource_id like '2%'
+	
+	 <select id="getDoctor" parameterType="object" resultType="map">
+		SELECT * FROM doctor where 1=1
+		<include refid="doctorsql" />
+		LIMIT  #{pageNum},#{numPerPage}		
 	</select>
-	<select id="getPHList3" parameterType="object" resultType="map">
-		select t.* from comm_code_ph t where t.resource_id like '3%'
+	<sql id="doctorsql">
+		<if test="dId!=null and dId!= ''">
+			and d_id = #{address}
+		</if>
+		<if test="name!=null and name!= ''">
+			and name like '${name}%'
+		</if>
+	</sql>
+	<select id="countDoctorTotal" parameterType="object"
+		resultType="int">
+		SELECT count(*) FROM doctor
 	</select>
-	<select id="getPHList4" parameterType="object" resultType="map">
-		select t.* from comm_code_ph t where t.resource_id like '4%'
+	
+	 <select id="getPatientList" parameterType="object" resultType="map">
+		SELECT t.*, a.name as doctorName FROM patient t left join doctor a on t.doctorId = a.d_id
+		LIMIT  #{pageNum},#{numPerPage}		
 	</select>
-	<select id="getPHList5" parameterType="object" resultType="map">
-		select t.* from comm_code_ph t where t.resource_id like '5%'
+	
+	<select id="countPatientTotal" parameterType="object"
+		resultType="int">
+		SELECT count(*) FROM patient
 	</select>
-	<select id="getPHlist" parameterType="object" resultType="map">
-		select t.* from comm_code_ph t where t.resource_id in 
-     <foreach item="phlist" index="index" collection="list"  open="(" separator="," close=")">
-                     #{phlist}
-            </foreach>
+	
+	 <select id="getPatientListWithState" parameterType="object" resultType="map">
+		SELECT t.* FROM patient t where state = #{state}
+		<include refid="patientsql" />
+		LIMIT  #{pageNum},#{numPerPage}		
 	</select>
+	
+	<select id="countPatientTotalWithState" parameterType="object"
+		resultType="int">
+		SELECT count(*) FROM patient where state = #{state} 
+		<include refid="patientsql" />
+	</select>
+	<sql id="patientsql">
+		<if test="doctorId!=null and doctorId!= ''">
+			and doctorId = #{doctorId}
+		</if>
+	</sql>
+	<delete id="deletePatientInfo">
+     DELETE FROM patient WHERE p_id = #{pId}
+    </delete>
+    
+    <update id="updatePatientState" parameterType="object">
+	UPDATE patient SET state = #{state}
+	WHERE p_id = #{pId}
+	</update> 
 </mapper>

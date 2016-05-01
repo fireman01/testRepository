@@ -3,11 +3,10 @@ package com.common.util;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.common.util.FormDataCollectUtil;
 
 /**
  * 【数据格式化成Map集合类型】
@@ -18,7 +17,7 @@ import com.common.util.FormDataCollectUtil;
 public class FormDataCollectUtil {
 	private static FormDataCollectUtil instance;
 
-	private HashMap<String, Object> map;
+	private Map<String, Object> map;
 
 	public static FormDataCollectUtil getInstance() {
 		if (instance == null) {
@@ -37,29 +36,40 @@ public class FormDataCollectUtil {
 	 */
 	public Map<String,Object> getFormData(HttpServletRequest request) {
 		map = new HashMap<String, Object>(request.getParameterMap());
-		Set keSet = map.entrySet();
-		for (Iterator itr = keSet.iterator(); itr.hasNext();) {
-			Map.Entry me = (Map.Entry) itr.next();
+		Set<Entry<String, Object>> keSet = map.entrySet();
+		for (Iterator<Entry<String, Object>> itr = keSet.iterator(); itr.hasNext();) {
+			Entry<String, Object> me = (Entry<String, Object>) itr.next();
 			String ok = me.getKey().toString();
 			Object ov = me.getValue();
 			String value = ((String[]) ov)[0];
 			map.put(ok, value);
 		}
-		if(null==request.getParameter("pageNum")||"".equals(request.getParameter("pageNum"))){
-			map.put("pageNum", 0);
-		}else{
-			map.put("pageNum", Integer.parseInt(request.getParameter("pageNum")));
+		return map;
+	}
+	
+	public Map<String,Object> getFormDataWithPage(HttpServletRequest request) {
+		map = new HashMap<String, Object>(request.getParameterMap());
+		Set<Entry<String, Object>> keSet = map.entrySet();
+		for (Iterator<Entry<String, Object>> itr = keSet.iterator(); itr.hasNext();) {
+			Entry<String, Object> me = (Entry<String, Object>) itr.next();
+			String ok = me.getKey().toString();
+			Object ov = me.getValue();
+			String value = ((String[]) ov)[0];
+			map.put(ok, value);
 		}
 		if(null==request.getParameter("numPerPage")||"".equals(request.getParameter("numPerPage"))){
-			map.put("numPerPage", 5);
+			map.put("numPerPage", 10);
 		}else{
 			map.put("numPerPage", Integer.parseInt(request.getParameter("numPerPage")));
 		}
 		if(null==request.getParameter("curPage")||"".equals(request.getParameter("curPage"))){
-			map.put("curPage", 0);
+			map.put("curPage", 1);
 		}else{
 			map.put("curPage", Integer.parseInt(request.getParameter("curPage")));
 		}
+		int curPage = (Integer)map.get("curPage");
+		int numPerPage = (Integer)map.get("numPerPage");
+		map.put("pageNum", (curPage-1)*numPerPage);
 		return map;
 	}
 	

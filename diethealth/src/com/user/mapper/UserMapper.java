@@ -4,18 +4,8 @@ package com.user.mapper;
 import java.util.List;
 import java.util.Map;
 
-
 public interface UserMapper {
     
-    /**
-     *   <p>【登录检查】</p>
-     *
-     * @author 林军雄  2014年11月15日 
-     *
-     * @param map
-     * @return
-     */
-    int loginCheck(Map<String, Object> map);
     
     /**
      *   <p>【校验用户是否存在】</p>
@@ -44,7 +34,10 @@ public interface UserMapper {
      * @param param
      * @return
      */
-    List<Map<String, Object>> showUserInfo(Map<String, Object> param);
+    Map<String, Object> showUserInfo(Map<String, Object> param);
+    
+    
+    Map<String, Object> showDoctorInfo(Map<String, Object> param);
     
     /**
      *   <p>【更新用户信息】</p>
@@ -55,12 +48,32 @@ public interface UserMapper {
      */
     void updateUser(Map<String, Object> param);
     
-    List<Map<String, Object>> getPHList1();
-    List<Map<String, Object>> getPHList2();
-    List<Map<String, Object>> getPHList3();
-    List<Map<String, Object>> getPHList4();
-    List<Map<String, Object>> getPHList5();
-    
-    List<Map<String, Object>> getPHlist(List<String> param);
+    List<Map<String, Object>> getDoctorList();
+
+	List<Map<String, Object>> getDoctor(Map<String, Object> param);
+	
+	List<Map<String, Object>> checkDoctor(Map<String, Object> param);
+
+	void saveDoctorInfo(Map<String, Object> param);
+	
+	void updateDoctorInfo(Map<String, Object> param);
+	
+	int checkDoctorById(Map<String, Object> param);
+
+	void deleteDoctorInfo(Map<String, Object> param);
+
+	int countDoctorTotal();
+
+	List<Map<String, Object>> getPatientList(Map<String, Object> map);
+
+	int countPatientTotal();
+	
+	void deletePatientInfo(Map<String, Object> param);
+
+	int countPatientTotalWithState(Map<String, Object> map);
+
+	List<Map<String, Object>> getPatientListWithState(Map<String, Object> map);
+
+	void updatePatientState(Map<String, Object> param);
     
 }

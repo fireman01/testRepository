@@ -12,7 +12,7 @@
 	<mvc:annotation-driven/> 
 	<mvc:default-servlet-handler />
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-	<context:component-scan base-package="com" use-default-filters="false">
+	<context:component-scan base-package="com.*.controller com.*.service.impl" use-default-filters="false">
 	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
@@ -22,6 +22,8 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<bean name="springContextUtil" class="com.common.util.SpringContextUtil"></bean>  
 	
 		<!-- MessageResolve -->
  <!-- 	<bean id="messageSource"

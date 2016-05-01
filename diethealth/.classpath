@@ -62,5 +62,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

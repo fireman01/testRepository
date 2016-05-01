@@ -1,11 +1,11 @@
 package com.user.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -18,31 +18,28 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	private UserMapper userDao;
 	
-	/**
-	 *   <p>【登录检查】</p>
-	 *
-	 * @author 林军雄  2014年11月15日 
-	 *
-	 * @param map
-	 * @return
-	 */
-	public int loginCheck(Map<String, Object> map){
-		if(map.get("password").toString().equals("c4ca4238a0b923820dcc509a6f75849b")&&map.get("username").equals("admin")){
-			return 2;
-		}else{
-			return userDao.loginCheck(map);
-		}
-	}
 
 	@Override
-	public String checkUser(Map<String, Object> param) {
+	public Map<String, Object> checkUser(Map<String, Object> param) {
 		List<Map<String, Object>> list = null;
-		list = userDao.checkUser(param);
-		if(list.size()>0){
-			return "1";
+		String type = param.get("type")==null?null:param.get("type").toString();
+		if(type==null){
+			if("admin".equals(param.get("username"))&&"password".equals(param.get("password"))){
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("name", "管理员");
+				return map;
+			}
 		}else{
-			return "0";
+			if("patient".equals(type)){
+				list = userDao.checkUser(param);
+			}else if("doctor".equals(type)){
+				list = userDao.checkDoctor(param);
+			}
+			if(list.size()>0){
+				return list.get(0);
+			}
 		}
+		return null;
 	}
 
 	/**
@@ -54,57 +51,93 @@ public class UserServiceImpl implements UserService {
 	 * @return
 	 */
 	@Override
-	public String saveUser(Map<String, Object> param) {
-		param.put("resource_id", CommonUtil.getSequence(null));
+	public String saveUser(Map<String, Object> param, HttpServletRequest request) {
+		String pId =  CommonUtil.getSequence(null);
+		param.put("p_id",pId);
 		userDao.saveUser(param);
+		request.getSession().setAttribute("pId", pId);
 		return "1";
 	}
 
 	@Override
 	public Map<String, Object> showUserInfo(Map<String, Object> param) {
-		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-	    list = userDao.showUserInfo(param);
-	    if(list.get(0).containsKey("PH")){
-	    	   String str = list.get(0).get("PH").toString();
-	   	    String[] tmp = str.split(",");
-	   	    List<String> phlist = new ArrayList<String>();
-	   	    for(int i=0; i<tmp.length; i++){
-	   	    	phlist.add(tmp[i]);
-	   	    }
-	   	    list.get(0).put("phlist", userDao.getPHlist(phlist));
-	    }
-	 
-		return list.get(0);
+		return userDao.showUserInfo(param);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getDoctorList(Map<String, Object> param) {
+		
+		return userDao.getDoctor(param);
+	}
+	
+	@Override
+	public Map<String, Object> showDoctorInfo(Map<String, Object> param) {
+		return userDao.showDoctorInfo(param);
+	}
+	
+	@Override
+	public String saveDoctorInfo(Map<String, Object> param) {
+		if(userDao.checkDoctorById(param)>0){
+			userDao.updateDoctorInfo(param);
+		}else{
+			userDao.saveDoctorInfo(param);
+		}
+		
+		return "1";
+	}
+	
+	@Override
+	public String deleteDoctorInfo(Map<String, Object> param) {
+		userDao.deleteDoctorInfo(param);
+		return "1";
 	}
 
 	@Override
-	public List<Map<String, Object>> getPHList1() {
-		return userDao.getPHList1();
+	public int countDoctorTotal() {
+		return userDao.countDoctorTotal();
 	}
-
+	
 	@Override
-	public List<Map<String, Object>> getPHList2() {
-		return userDao.getPHList2();
+	public int countPatientTotal() {
+		return userDao.countPatientTotal();
 	}
-
+	
 	@Override
-	public List<Map<String, Object>> getPHList3() {
-		return userDao.getPHList3();
+	public List<Map<String, Object>> getPatientList(Map<String, Object> map) {
+		return userDao.getPatientList(map);
 	}
-
+	
 	@Override
-	public List<Map<String, Object>> getPHList4() {
-		return userDao.getPHList4();
+	public String deletePatientInfo(Map<String, Object> param) {
+		userDao.deletePatientInfo(param);
+		return "1";
 	}
-
+	
 	@Override
-	public List<Map<String, Object>> getPHList5() {
-		return userDao.getPHList5();
+	public int countPatientTotalWithState(Map<String, Object> map) {
+		return userDao.countPatientTotalWithState(map);
 	}
-
+	
 	@Override
-	public String saveProject(Map<String, Object> param) {
-		userDao.updateUser(param);
+	public List<Map<String, Object>> getPatientListWithState(
+			Map<String, Object> map) {
+		return userDao.getPatientListWithState(map);
+	}
+	
+	@Override
+	public String updatePatientState(Map<String, Object> param) {
+		userDao.updatePatientState(param);
+		return "1";
+	}
+	
+	@Override
+	public List<Map<String, Object>> getDoctorList() {
+		return userDao.getDoctorList();
+	}
+	
+	@Override
+	public String updateUser(Map<String, Object> map) {
+		userDao.updateUser(map);
 		return "1";
 	}
 
