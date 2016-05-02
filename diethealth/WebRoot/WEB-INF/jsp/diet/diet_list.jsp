@@ -10,9 +10,7 @@ String path = request.getContextPath();
 <title>饮食记录列表</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0;" name="viewport" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/jquerymobile/jquery.mobile-1.4.5.min.css">
 </head>
