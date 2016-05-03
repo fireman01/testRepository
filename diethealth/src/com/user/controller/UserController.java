@@ -113,16 +113,20 @@ import com.user.service.UserService;
 			return "user/user_index";
 		}
 		
-		@RequestMapping("/add_user")
-		public  String addUser(HttpServletRequest request,HttpServletResponse response){
-			Map<String, Object> map = FormDataCollectUtil.getInstance().getFormData(request); 
-			String result = userService.saveUser(map,request);
-			if("1".equals(result)){
-				request.getSession().setAttribute("name", map.get("name"));
-				return "user/user_index";
+ 	    @RequestMapping("/add_user")
+	    public void addUser(HttpServletRequest request, HttpServletResponse response) {
+			Map<String, Object> map = FormDataCollectUtil.getInstance()
+					.getFormData(request);
+			try {
+				String result = userService.saveUser(map, request);
+				if ("1".equals(result)) {
+					request.getSession().setAttribute("name", map.get("name"));
+				}
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().print(result);
+			} catch (Exception e) {
+				log.error(e);
 			}
-			return "user/register";
-			
 		}
 		
 		@RequestMapping("user_info")

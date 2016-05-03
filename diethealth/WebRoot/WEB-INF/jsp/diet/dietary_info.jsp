@@ -10,7 +10,7 @@
 <title>饮食记录</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0;" name="viewport" />
+<meta content="width=device-width" name="viewport" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/jquerymobile/jquery.mobile-1.4.5.min.css">
 </head>
@@ -27,141 +27,153 @@
 		<c:forEach var="diet" items="${dietList}" varStatus="s">
 		<h3 style="text-align:center;">${diet.type }&nbsp;&nbsp;&nbsp;总能量：${diet.energy}(kal)</h3>
 			<div class="ui-grid-d">
-				<div class="ui-block-a" style="text-align:center;">
-					<div class="ui-grid-a">
-						<div class="ui-block-a"
-							style="border: 1px solid black;text-align:center;">食物</div>
-						<div class="ui-block-b"
-							style="border: 1px solid black;text-align:center;">能量(kal)</div>
-					</div>
+				<div class="ui-block-a" style="border: 1px solid black;text-align:center;font-size:10px;border-style:ridge ridge ridge ridge;">
+					食物
 				</div>
 				<div class="ui-block-b"
-					style="border: 1px solid black;text-align:center;">蛋白质(g)</div>
+					style="border: 1px solid black;text-align:center;font-size:10px;border-style:ridge ridge ridge none;">
+					<div class="ui-grid-a">
+						<div class="ui-block-a"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge none none;">能量</div>
+						<div class="ui-block-b"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none none none none;">脂肪</div>
+					</div>
+					</div>
 				<div class="ui-block-c"
-					style="border: 1px solid black;text-align:center;">脂肪(g)</div>
+					style="border: 1px solid black;text-align:center;font-size:10px;border-style:ridge ridge ridge none;">蛋白质</div>
 				<div class="ui-block-d"
-					style="border: 1px solid black;text-align:center;">碳水化和物(g)</div>
+					style="border: 1px solid black;text-align:center;font-size:10px;border-style:ridge ridge ridge none;">碳化物</div>
 				<div class="ui-block-e"
-					style="border: 1px solid black;text-align:center;">纤维素(mg)</div>
+					style="border: 1px solid black;text-align:center;font-size:10px;border-style:ridge ridge ridge none;">纤维素</div>
 			</div>
 				<c:forEach var="mainfood" items="${diet.mainfood}" varStatus="s">
 					<div class="ui-grid-d">
-						<div class="ui-block-a" style="text-align:center;">
+						<div class="ui-block-a" style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge ridge;">${mainfood.name }
+							
+						</div>
+						
+						<div class="ui-block-b"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">
 							<div class="ui-grid-a">
 								<div class="ui-block-a"
-									style="border: 1px solid black;text-align:center;">${mainfood.name }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge none none;">${mainfood.energy }</div>
 								<div class="ui-block-b"
-									style="border: 1px solid black;text-align:center;">${mainfood.energy }</div>
-							</div>
-						</div>
-						<div class="ui-block-b"
-							style="border: 1px solid black;text-align:center;">${mainfood.protein }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none none none none;">${mainfood.fat }</div>
+							</div></div>
 						<div class="ui-block-c"
-							style="border: 1px solid black;text-align:center;">${mainfood.fat }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${mainfood.protein }</div>
 						<div class="ui-block-d"
-							style="border: 1px solid black;text-align:center;">${mainfood.carbohydrate }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${mainfood.carbohydrate }</div>
 						<div class="ui-block-e"
-							style="border: 1px solid black;text-align:center;">${mainfood.cellulose }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${mainfood.cellulose }</div>
 					</div>
 				</c:forEach>
 				<c:forEach var="meat" items="${diet.meat}" varStatus="s">
 					<div class="ui-grid-d">
-						<div class="ui-block-a" style="text-align:center;">
+						<div class="ui-block-a" style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge ridge;">${meat.name }
+							
+						</div>
+						
+						<div class="ui-block-b"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">
 							<div class="ui-grid-a">
 								<div class="ui-block-a"
-									style="border: 1px solid black;text-align:center;">${meat.name }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge none none;">${meat.energy }</div>
 								<div class="ui-block-b"
-									style="border: 1px solid black;text-align:center;">${meat.energy }</div>
-							</div>
-						</div>
-						<div class="ui-block-b"
-							style="border: 1px solid black;text-align:center;">${meat.protein }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none none none none;">${meat.fat }</div>
+							</div></div>
 						<div class="ui-block-c"
-							style="border: 1px solid black;text-align:center;">${meat.fat }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${meat.protein }</div>
 						<div class="ui-block-d"
-							style="border: 1px solid black;text-align:center;">${meat.carbohydrate }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${meat.carbohydrate }</div>
 						<div class="ui-block-e"
-							style="border: 1px solid black;text-align:center;">${meat.cellulose }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${meat.cellulose }</div>
 					</div>
 				</c:forEach>
+				
 				<c:forEach var="vegetables" items="${diet.vegetables}" varStatus="s">
 					<div class="ui-grid-d">
-						<div class="ui-block-a" style="text-align:center;">
+						<div class="ui-block-a" style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge ridge;">${vegetables.name }
+						</div>
+						
+						<div class="ui-block-b"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">
 							<div class="ui-grid-a">
 								<div class="ui-block-a"
-									style="border: 1px solid black;text-align:center;">${vegetables.name }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge none none;">${vegetables.energy }</div>
 								<div class="ui-block-b"
-									style="border: 1px solid black;text-align:center;">${vegetables.energy }</div>
-							</div>
-						</div>
-						<div class="ui-block-b"
-							style="border: 1px solid black;text-align:center;">${vegetables.protein }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none none none none;">${vegetables.fat }</div>
+							</div></div>
 						<div class="ui-block-c"
-							style="border: 1px solid black;text-align:center;">${vegetables.fat }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${vegetables.protein }</div>
 						<div class="ui-block-d"
-							style="border: 1px solid black;text-align:center;">${vegetables.carbohydrate }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${vegetables.carbohydrate }</div>
 						<div class="ui-block-e"
-							style="border: 1px solid black;text-align:center;">${vegetables.cellulose }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${vegetables.cellulose }</div>
 					</div>
 				</c:forEach>
-				<c:forEach var="drink" items="${diet.drink}" varStatus="s">
+			<c:forEach var="drink" items="${diet.drink}" varStatus="s">
 					<div class="ui-grid-d">
-						<div class="ui-block-a" style="text-align:center;">
+						<div class="ui-block-a" style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge ridge;">${drink.name }
+						</div>
+						
+						<div class="ui-block-b"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">
 							<div class="ui-grid-a">
 								<div class="ui-block-a"
-									style="border: 1px solid black;text-align:center;">${drink.name }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge none none;">${drink.energy }</div>
 								<div class="ui-block-b"
-									style="border: 1px solid black;text-align:center;">${drink.energy }</div>
-							</div>
-						</div>
-						<div class="ui-block-b"
-							style="border: 1px solid black;text-align:center;">${drink.protein }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none none none none;">${drink.fat }</div>
+							</div></div>
 						<div class="ui-block-c"
-							style="border: 1px solid black;text-align:center;">${drink.fat }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${drink.protein }</div>
 						<div class="ui-block-d"
-							style="border: 1px solid black;text-align:center;">${drink.carbohydrate }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${drink.carbohydrate }</div>
 						<div class="ui-block-e"
-							style="border: 1px solid black;text-align:center;">${drink.cellulose }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${drink.cellulose }</div>
 					</div>
 				</c:forEach>
+				
 				<c:forEach var="nut" items="${diet.nut}" varStatus="s">
 					<div class="ui-grid-d">
-						<div class="ui-block-a" style="text-align:center;">
+						<div class="ui-block-a" style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge ridge;">${nut.name }
+						</div>
+						
+						<div class="ui-block-b"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">
 							<div class="ui-grid-a">
 								<div class="ui-block-a"
-									style="border: 1px solid black;text-align:center;">${nut.name }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge none none;">${nut.energy }</div>
 								<div class="ui-block-b"
-									style="border: 1px solid black;text-align:center;">${nut.energy }</div>
-							</div>
-						</div>
-						<div class="ui-block-b"
-							style="border: 1px solid black;text-align:center;">${nut.protein }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none none none none;">${nut.fat }</div>
+							</div></div>
 						<div class="ui-block-c"
-							style="border: 1px solid black;text-align:center;">${nut.fat }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${nut.protein }</div>
 						<div class="ui-block-d"
-							style="border: 1px solid black;text-align:center;">${nut.carbohydrate }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${nut.carbohydrate }</div>
 						<div class="ui-block-e"
-							style="border: 1px solid black;text-align:center;">${nut.cellulose }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${nut.cellulose }</div>
 					</div>
 				</c:forEach>
-				<c:forEach var="fruits" items="${diet.fruits}" varStatus="s">
+					<c:forEach var="fruits" items="${diet.fruits}" varStatus="s">
 					<div class="ui-grid-d">
-						<div class="ui-block-a" style="text-align:center;">
+						<div class="ui-block-a" style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge ridge;">${fruits.name }
+						</div>
+						
+						<div class="ui-block-b"
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">
 							<div class="ui-grid-a">
 								<div class="ui-block-a"
-									style="border: 1px solid black;text-align:center;">${fruits.name }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge none none;">${fruits.energy }</div>
 								<div class="ui-block-b"
-									style="border: 1px solid black;text-align:center;">${fruits.energy }</div>
-							</div>
-						</div>
-						<div class="ui-block-b"
-							style="border: 1px solid black;text-align:center;">${fruits.protein }</div>
+									style="border: 1px solid black;text-align:center;font-size:10px;border-style:none none none none;">${fruits.fat }</div>
+							</div></div>
 						<div class="ui-block-c"
-							style="border: 1px solid black;text-align:center;">${fruits.fat }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${fruits.protein }</div>
 						<div class="ui-block-d"
-							style="border: 1px solid black;text-align:center;">${fruits.carbohydrate }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${fruits.carbohydrate }</div>
 						<div class="ui-block-e"
-							style="border: 1px solid black;text-align:center;">${fruits.cellulose }</div>
+							style="border: 1px solid black;text-align:center;font-size:10px;border-style:none ridge ridge none;">${fruits.cellulose }</div>
 					</div>
 				</c:forEach>
 				<div data-role="fieldcontain">
@@ -172,91 +184,91 @@
 					<h3 style="text-align:center;">血糖记录</h3>
 		<div class="ui-grid-d" id="bggrid">
 				<div class="ui-block-a"
-					style="border: 1px solid black;border-style:ridge ridge ridge ridge;text-align:center;">
-					日期
+					style="border: 1px solid black;border-style:ridge ridge ridge ridge;text-align:center;font-size:10px;">
+					日&nbsp;期
 					<div class="ui-grid-a">
 						<div class="ui-block-a">&nbsp;</div>
 						<div class="ui-block-b">&nbsp;</div>
 					</div>
 				</div>
 				<div class="ui-block-b"
-					style="border: 1px solid black; border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black; border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					早餐
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;">前</div>
+							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;font-size:10px;">前</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:ridge none none none; text-align:center;">后</div>
+							style="border: 1px solid black;border-style:ridge none none none; text-align:center;font-size:10px;">后</div>
 					</div>
 				</div>
 				<div class="ui-block-c"
-					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					午餐
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;">前</div>
+							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;font-size:10px;">前</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:ridge none none none; text-align:center;">后</div>
+							style="border: 1px solid black;border-style:ridge none none none; text-align:center;font-size:10px;">后</div>
 					</div>
 				</div>
 				<div class="ui-block-d"
-					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					晚餐
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;">前</div>
+							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;font-size:10px;">前</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:ridge none none none; text-align:center;">后</div>
+							style="border: 1px solid black;border-style:ridge none none none; text-align:center;font-size:10px;">后</div>
 					</div>
 				</div>
 				<div class="ui-block-e"
-					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					睡前
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:none none none none;text-align:center;">&nbsp;</div>
+							style="border: 1px solid black;border-style:none none none none;text-align:center;font-size:10px;">&nbsp;</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:none none none none; text-align:center;">&nbsp;</div>
+							style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;">&nbsp;</div>
 					</div>
 				</div>
 					<div class="ui-block-a"
-						style="border: 1px solid black;border-style:none ridge ridge ridge;text-align:center;">
+						style="border: 1px solid black;border-style:none ridge ridge ridge;text-align:center;font-size:10px;">
 						${bg.date }</div>
 					<div class="ui-block-b"
-						style="border: 1px solid black; border-style:none ridge ridge none;text-align:center;">
+						style="border: 1px solid black; border-style:none ridge ridge none;text-align:center;font-size:10px;">
 						<div class="ui-grid-a">
 							<div class="ui-block-a"
-								style="border: 1px solid black;border-style:none ridge none none;text-align:center;"
+								style="border: 1px solid black;border-style:none ridge none none;text-align:center;font-size:10px;"
 								name="before">${bg.bloodGlucoseBeforeBreakfast }</div>
 							<div class="ui-block-b"
-								style="border: 1px solid black;border-style:none none none none; text-align:center;"
+								style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;"
 								name="after">${bg.bloodGlucoseAfterBreakfast }</div>
 						</div>
 					</div>
 					<div class="ui-block-c"
-						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;">
+						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;font-size:10px;">
 						<div class="ui-grid-a">
 							<div class="ui-block-a"
-								style="border: 1px solid black;border-style:none ridge none none;text-align:center;"
+								style="border: 1px solid black;border-style:none ridge none none;text-align:center;font-size:10px;"
 								name="before">${bg.bloodGlucoseBeforeLunch }</div>
 							<div class="ui-block-b"
-								style="border: 1px solid black;border-style:none none none none; text-align:center;"
+								style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;"
 								name="after">${bg.bloodGlucoseAfterLunch }</div>
 						</div>
 					</div>
 					<div class="ui-block-d"
-						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;">
+						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;font-size:10px;">
 						<div class="ui-grid-a">
 							<div class="ui-block-a"
-								style="border: 1px solid black;border-style:none ridge none none;text-align:center;"
+								style="border: 1px solid black;border-style:none ridge none none;text-align:center;font-size:10px;"
 								name="before">${bg.bloodGlucoseBeforeDinner }</div>
 							<div class="ui-block-b"
-								style="border: 1px solid black;border-style:none none none none; text-align:center;"
+								style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;"
 								name="after">${bg.bloodGlucoseAfterDinner }</div>
 						</div>
 					</div>
 					<div class="ui-block-e"
-						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;"
+						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;font-size:10px;"
 						name="before">${bg.bloodGlucoseBeforeSleep }</div>
 			</div>
 			<div data-role="fieldcontain">

@@ -13,7 +13,7 @@
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0;" name="viewport" />
+<meta content="width=device-width" name="viewport" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/jquerymobile/jquery.mobile-1.4.5.min.css">
 </head>
@@ -45,95 +45,94 @@
 		<div data-role="content">
 			<div class="ui-grid-d" id="bggrid">
 				<div class="ui-block-a"
-					style="border: 1px solid black;border-style:ridge ridge ridge ridge;text-align:center;">
-					日期
+					style="border: 1px solid black;border-style:ridge ridge ridge ridge;text-align:center;font-size:10px;">
+					日&nbsp;期
 					<div class="ui-grid-a">
 						<div class="ui-block-a">&nbsp;</div>
 						<div class="ui-block-b">&nbsp;</div>
 					</div>
 				</div>
 				<div class="ui-block-b"
-					style="border: 1px solid black; border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black; border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					早餐
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;">前</div>
+							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;font-size:10px;">前</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:ridge none none none; text-align:center;">后</div>
+							style="border: 1px solid black;border-style:ridge none none none; text-align:center;font-size:10px;">后</div>
 					</div>
 				</div>
 				<div class="ui-block-c"
-					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					午餐
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;">前</div>
+							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;font-size:10px;">前</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:ridge none none none; text-align:center;">后</div>
+							style="border: 1px solid black;border-style:ridge none none none; text-align:center;font-size:10px;">后</div>
 					</div>
 				</div>
 				<div class="ui-block-d"
-					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					晚餐
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;">前</div>
+							style="border: 1px solid black;border-style:ridge ridge none none;text-align:center;font-size:10px;">前</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:ridge none none none; text-align:center;">后</div>
+							style="border: 1px solid black;border-style:ridge none none none; text-align:center;font-size:10px;">后</div>
 					</div>
 				</div>
 				<div class="ui-block-e"
-					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;">
+					style="border: 1px solid black;border-style:ridge ridge ridge none;text-align:center;font-size:10px;">
 					睡前
 					<div class="ui-grid-a">
 						<div class="ui-block-a"
-							style="border: 1px solid black;border-style:none none none none;text-align:center;">&nbsp;</div>
+							style="border: 1px solid black;border-style:none none none none;text-align:center;font-size:10px;">&nbsp;</div>
 						<div class="ui-block-b"
-							style="border: 1px solid black;border-style:none none none none; text-align:center;">&nbsp;</div>
+							style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;">&nbsp;</div>
 					</div>
 				</div>
 
 				<c:forEach var="bg" items="${bgList}" varStatus="s">
 					<div class="ui-block-a"
-						style="border: 1px solid black;border-style:none ridge ridge ridge;text-align:center;">
+						style="border: 1px solid black;border-style:none ridge ridge ridge;text-align:center;font-size:10px;">
 						${bg.date }</div>
 					<div class="ui-block-b"
-						style="border: 1px solid black; border-style:none ridge ridge none;text-align:center;">
+						style="border: 1px solid black; border-style:none ridge ridge none;text-align:center;font-size:10px;">
 						<div class="ui-grid-a">
 							<div class="ui-block-a"
-								style="border: 1px solid black;border-style:none ridge none none;text-align:center;"
+								style="border: 1px solid black;border-style:none ridge none none;text-align:center;font-size:10px;"
 								name="before">${bg.bloodGlucoseBeforeBreakfast }</div>
 							<div class="ui-block-b"
-								style="border: 1px solid black;border-style:none none none none; text-align:center;"
+								style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;"
 								name="after">${bg.bloodGlucoseAfterBreakfast }</div>
 						</div>
 					</div>
 					<div class="ui-block-c"
-						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;">
+						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;font-size:10px;">
 						<div class="ui-grid-a">
 							<div class="ui-block-a"
-								style="border: 1px solid black;border-style:none ridge none none;text-align:center;"
+								style="border: 1px solid black;border-style:none ridge none none;text-align:center;font-size:10px;"
 								name="before">${bg.bloodGlucoseBeforeLunch }</div>
 							<div class="ui-block-b"
-								style="border: 1px solid black;border-style:none none none none; text-align:center;"
+								style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;"
 								name="after">${bg.bloodGlucoseAfterLunch }</div>
 						</div>
 					</div>
 					<div class="ui-block-d"
-						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;">
+						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;font-size:10px;">
 						<div class="ui-grid-a">
 							<div class="ui-block-a"
-								style="border: 1px solid black;border-style:none ridge none none;text-align:center;"
+								style="border: 1px solid black;border-style:none ridge none none;text-align:center;font-size:10px;"
 								name="before">${bg.bloodGlucoseBeforeDinner }</div>
 							<div class="ui-block-b"
-								style="border: 1px solid black;border-style:none none none none; text-align:center;"
+								style="border: 1px solid black;border-style:none none none none; text-align:center;font-size:10px;"
 								name="after">${bg.bloodGlucoseAfterDinner }</div>
 						</div>
 					</div>
 					<div class="ui-block-e"
-						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;"
+						style="border: 1px solid black;border-style:none ridge ridge none;text-align:center;font-size:10px;"
 						name="before">${bg.bloodGlucoseBeforeSleep }</div>
-
 				</c:forEach>
 			</div>
 		</div>

@@ -10,18 +10,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>用户注册</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0;" name="viewport" />
+<meta content="width=device-width" name="viewport" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/jquerymobile/jquery.mobile-1.4.5.min.css">
 </head>
 
 <body>
 <div  data-role="header">
- <a href="#" data-role="button">登录</a>
+ <a href="" data-role="button" onclick="window.location.href=''">登录</a>
 <h1>用户注册</h1>
 </div>
 <div data-role="content">
-<form method="post" action="user/add_user" id="form1">
   <div data-role="fieldcontain">
     <label for="username">用户名：</label>
     <input type="text" name="username" id="username" placeholder="您的用户名" required="true">
@@ -41,12 +40,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div data-role="fieldcontain">
     <label for="prepregnancyWeight">孕前体重：</label>
     <input type="range" name="prepregnancyWeight" id="prepregnancyWeight" required="true"  min="40" max="100" value="50">
-    <!-- <input type="text" name="prepregnancyWeight" id="prepregnancyWeight" placeholder="您的孕前体重（kg）" required="true"> -->
    </div>
      <div data-role="fieldcontain">
     <label for="weight">当前体重：</label>
     <input type="range" name="weight" id="weight" required="true"  min="40" max="100" value="60">
-<!--     <input type="text" name="weight" id="weight" placeholder="您的当前体重（kg）" required="true"> -->
    </div>
     <div data-role="fieldcontain">
     <label for="height">患病时间：</label>
@@ -80,9 +77,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="password"  name="password1"  id="password1" placeholder="请再次输入密码" required="true">
    </div>
      <div data-role="fieldcontain">
-     <button onclick="return onSubmit();">提交</button>
+     <button onclick="onSubmit();">提交</button>
    </div>
-</form>
 </div>
 </body>
 <script src="<%=path %>/js/jquery-2.2.2.min.js"></script>
@@ -91,13 +87,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function onSubmit(){
 	var password = $('#password').val();
 	var password1 = $('#password1').val();
-	   if(password!=password1){
+	var username = $('#username').val();
+	var birthday = $('#birthday').val();
+	var name = $('#name').val();
+	var height = $('#height').val();
+	var prepregnancyWeight = $('#prepregnancyWeight').val();
+	var weight = $('#weight').val();
+	var diabetesType = $('#diabetesType').val();
+	var strength = $('#strength').val();
+	var pregnancy = $('#pregnancy').val();
+	var email = $('#email').val();
+	   if(password!=""&&password!=password1){
 		   alert("两次密码输入不一致，请重新输入!");
 		   $('#password').val("");
 		   $('#password1').val("");
 		   return false;
+	   }else if(username==""){
+		   alert("用户名不能为空！");
+		   return false;
+	   }else if(name==""){
+		   alert("真实姓名不能为空！");
+		   return false;
 	   }else{
-		   return true;
+		   $.post("user/add_user",{name:name,username:username,birthday:birthday,
+				height:height,prepregnancyWeight:prepregnancyWeight,weight:weight,
+				diabetesType:diabetesType,strength:strength,pregnancy:pregnancy,email:email,
+				password:password},function(text){
+					if(text=="1"){
+						alert("保存成功！");
+						window.location.href="user/user_index";
+					}else{
+						alert("保存失败！")
+					}
+				}); 
 	   }
 	  
 }

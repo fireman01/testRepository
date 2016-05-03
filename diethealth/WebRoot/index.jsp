@@ -8,10 +8,11 @@ String path = request.getContextPath();
 <title>用户登录</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0;" name="viewport" />
+<meta content="width=device-width" name="viewport" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/jquerymobile/jquery.mobile-1.4.5.min.css">
 </head>
+
 
 <body>
 <div  data-role="header">
@@ -38,6 +39,9 @@ String path = request.getContextPath();
      <div data-role="fieldcontain">
      <input type="button" value="提交" onclick="onSubmit();">
      <!-- <button onclick="onSubmit();">提交</button> -->
+   </div>
+   <div data-role="fieldcontain">
+    <a href="" onclick="window.location.href='<%=path %>/user/register'" style="float:right;text-decoration: none;">注册</a>
    </div>
 </form>
 </div>

@@ -8,7 +8,7 @@ String path = request.getContextPath();
 <title>管理员登录</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0;" name="viewport" />
+<meta content="width=device-width" name="viewport" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/jquerymobile/jquery.mobile-1.4.5.min.css">
 </head>

@@ -10,7 +10,7 @@ String pId = session.getAttribute("pId").toString();
 <title>用户主页</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0;" name="viewport" />
+<meta content="width=device-width" name="viewport" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/jquerymobile/jquery.mobile-1.4.5.min.css">
 </head>
@@ -28,10 +28,14 @@ String pId = session.getAttribute("pId").toString();
       <ul>
         <li><a href="" data-icon="grid" onclick="window.location.href='../diet/diet_edit'">饮食录入</a></li>
         <li><a href="#" data-icon="info" onclick="window.location.href='../diet/diet_list'">饮食记录</a></li>
-        <li><a href="#" data-icon="grid" onclick="window.location.href='../diet/bg_edit'">血糖录入</a></li>
-        <li><a href="#" data-icon="grid" onclick="window.location.href='../diet/bg_list'">血糖记录</a></li>
         <li><a href="#" data-icon="grid" onclick="window.location.href='user_edit'">信息修改</a></li>
       </ul>
+    </div>
+       <div data-role="navbar">
+         <ul>
+     <li><a href="#" data-icon="grid" onclick="window.location.href='../diet/bg_edit'">血糖录入</a></li>
+        <li><a href="#" data-icon="grid" onclick="window.location.href='../diet/bg_list'">血糖记录</a></li>
+         </ul>
     </div>
   </div>
 
