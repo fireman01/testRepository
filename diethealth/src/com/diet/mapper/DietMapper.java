@@ -45,9 +45,9 @@ public interface DietMapper {
 	
 	void saveBloodGlucoseInfo(Map<String, Object> param);
 
-	List<Map<String, Object>> getDietList(Map<String, Object> map);
+	List<Map<String, Object>>  getDietList(Map<String, Object> map);
 
-	int countDietTotal(Map<String, Object> map);
+	List<Map<String, Object>> countDietTotal(Map<String, Object> map);
 
 	List<Map<String, Object>> showDietInfo(Map<String, Object> param);
 

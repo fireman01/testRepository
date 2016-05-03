@@ -122,7 +122,7 @@ public class DietServiceImpl implements DietService {
 	
 	@Override
 	public int countDietTotal(Map<String, Object> map) {
-		return dietDao.countDietTotal(map);
+		return dietDao.countDietTotal(map).size();
 	}
 	
 	@Override

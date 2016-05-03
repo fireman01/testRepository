@@ -82,11 +82,11 @@
 	select count(*) FROM bloodglucose WHERE p_id = #{pId} and date = #{date}
 	</select>
 	
-	<select id="getDietList" parameterType="object" resultType="map">
+	<select id="getDietList" parameterType="object" resultType="hashmap">
 		SELECT * FROM dietdetailinfo where p_id = #{pId}
 		<include refid="dietsql" />
-		GROUP BY 'date'
-		ORDER BY 'date' DESC
+		GROUP BY date
+		ORDER BY date DESC
 		LIMIT  #{pageNum},#{numPerPage}		
 	</select>
 	<sql id="dietsql">
@@ -96,8 +96,8 @@
 	</sql>
 	
 	<select id="countDietTotal" parameterType="object"
-		resultType="int">
-		SELECT count(*) FROM dietdetailinfo where p_id = #{pId} GROUP BY 'date'
+		resultType="hashmap">
+		SELECT * FROM dietdetailinfo where p_id = #{pId} GROUP BY date
 	</select>
 	
 	 <select id="showDietInfo" parameterType="object" resultType="map">
@@ -106,7 +106,7 @@
 	
 	<select id="getBloodGlucoseList" parameterType="object" resultType="map">
 		SELECT * FROM bloodglucose where p_id = #{pId}
-		ORDER BY 'date' DESC
+		ORDER BY date DESC
 		LIMIT  #{pageNum},#{numPerPage}		
 	</select>
 	<select id="countBloodGlucoseTotal" parameterType="object"
