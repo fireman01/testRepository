@@ -107,18 +107,34 @@ function onSubmit(){
 	var email = $('#email').val();
 	var password = $('#password').val();
 	var doctorId = $('#doctorId').val();
-	
-	$.post("saveUserInfo",{pId:pId,name:name,username:username,birthday:birthday,
-		height:height,prepregnancyWeight:prepregnancyWeight,weight:weight,
-		diabetesType:diabetesType,strength:strength,pregnancy:pregnancy,email:email,
-		password:password,doctorId:doctorId},function(text){
-			if(text=="1"){
-				alert("保存成功！");
-				window.location.href="user_index";
-			}else{
-				alert("保存失败！")
-			}
-		}); 
+	   if(password!=""){
+		   alert("密码不能为空!");
+		   return false;
+	   }else if(username==""){
+		   alert("用户名不能为空！");
+		   return false;
+	   }else if(name==""){
+		   alert("真实姓名不能为空！");
+		   return false;
+	   }else if(height==""){
+		   alert("身高不能为空!");
+		   return false;
+	   }else if(strength==""){
+		   alert("工作强度不能为空!");
+		   return false;
+	   }else{
+		$.post("saveUserInfo",{pId:pId,name:name,username:username,birthday:birthday,
+			height:height,prepregnancyWeight:prepregnancyWeight,weight:weight,
+			diabetesType:diabetesType,strength:strength,pregnancy:pregnancy,email:email,
+			password:password,doctorId:doctorId},function(text){
+				if(text=="1"){
+					alert("保存成功！");
+					window.location.href="user_index";
+				}else{
+					alert("保存失败！")
+				}
+			}); 
+	   }
 	
 }
 </script>

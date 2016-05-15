@@ -7,7 +7,7 @@ String path = request.getContextPath();
 <html>
 <head>
 
-<title>待确诊列表</title>
+<title>患者信息列表</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta content="width=device-width" name="viewport" />
