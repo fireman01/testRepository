@@ -19,14 +19,13 @@ String path = request.getContextPath();
 <div data-role="page" id="pageone">
   <div data-role="header">
    <a href="" data-role="button" onclick="window.location.href='doctor_index'">首页</a>
-    <h1>待确诊列表</h1>
-   <!--  <a href="#" data-role="button" onclick="window.location.href='doctor_add'">添加</a> -->
+    <h1>患者信息列表</h1>
   </div>
 
   <div data-role="content">
     <ul data-role="listview" data-autodividers="false" data-inset="true" data-filter="true" data-filter-placeholder="搜索姓名 ">
      <c:forEach var="patient" items="${patientList}" varStatus="s">
-    <li><a href="" onclick="stateChange('${patient.p_id }')">${patient.name }</a></li>
+    <li><a href="" onclick="window.location.href='user_info?pId=${patient.p_id }'">${patient.name }</a></li>
     </c:forEach>
   </ul>
   </div>
@@ -50,20 +49,6 @@ function pageChange(num){
 		curPage = curPage+num;
 		window.location.href='confirm_list?curPage='+curPage;
 	}
-}
-function stateChange(pId){
-	var r=confirm("确认就诊？");
-	if (r==true)
-	  {
-	    $.post("updatePatientState",{pId:pId,state:"2"},function(text){
-		if(text=="1"){
-			alert("更新成功！");
-			window.location.href="confirm_list";
-		}else{
-			alert("更新失败！")
-		}
-	   }); 
-	 }
 }
 </script>
 </html>

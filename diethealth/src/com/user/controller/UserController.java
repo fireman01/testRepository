@@ -130,12 +130,11 @@ import com.user.service.UserService;
 		}
 		
 		@RequestMapping("user_info")
-		public void showUserInfo(HttpServletRequest request,Model model){
-			Map<String, Object> map = FormDataCollectUtil.getInstance().getFormData(request);
-			HttpSession session = request.getSession();
-			String account  = (String)session.getAttribute("account");
-			map.put("account", account);
-			model.addAttribute("userInfo", userService.showUserInfo(map));
+		public String showUserInfo(HttpServletRequest request,Model model){
+			Map<String, Object> param = FormDataCollectUtil.getInstance()
+					.getFormData(request);
+			model.addAttribute("user", userService.showUserInfo(param));
+			return "user/user_info";
 		}
 		
 		@RequestMapping("patient_list")
@@ -158,12 +157,11 @@ import com.user.service.UserService;
 		@RequestMapping("confirm_list")
 		public String toConfirmList(HttpServletRequest request, Model model){
 			Map<String, Object> map = FormDataCollectUtil.getInstance().getFormDataWithPage(request);
-			map.put("state", "1");
 			String doctorId = (String)request.getSession().getAttribute("dId");
 			map.put("doctorId", doctorId);
-			List<Map<String, Object>> list = userService.getPatientListWithState(map);
+			List<Map<String, Object>> list = userService.getPatientListByDoctorId(map);
 			model.addAttribute("patientList",list);
-			int total = userService.countPatientTotalWithState(map);
+			int total = userService.countPatientTotalByDoctorId(map);
 			int numPerPage = (Integer)map.get("numPerPage");
 			int totalPage = (int)Math.ceil((total*1.0)/numPerPage);
 			model.addAttribute("totalPage",totalPage);
@@ -178,12 +176,11 @@ import com.user.service.UserService;
 		@RequestMapping("confirmed_list")
 		public String toConfirmedList(HttpServletRequest request, Model model){
 			Map<String, Object> map = FormDataCollectUtil.getInstance().getFormDataWithPage(request);
-			map.put("state", "2");
 			String doctorId = (String)request.getSession().getAttribute("dId");
 			map.put("doctorId", doctorId);
-			List<Map<String, Object>> list = userService.getPatientListWithState(map);
+			List<Map<String, Object>> list = userService.getPatientListByDoctorId(map);
 			model.addAttribute("patientList",list);
-			int total = userService.countPatientTotalWithState(map);
+			int total = userService.countPatientTotalByDoctorId(map);
 			int numPerPage = (Integer)map.get("numPerPage");
 			int totalPage = (int)Math.ceil((total*1.0)/numPerPage);
 			model.addAttribute("totalPage",totalPage);

@@ -28,31 +28,31 @@ String pId = session.getAttribute("pId").toString();
     </div>
   <div data-role="fieldcontain">
     <label for="bloodGlucoseBeforeBreakfast">早餐前：</label>
-    <input type="text" name="bloodGlucoseBeforeBreakfast" id="bloodGlucoseBeforeBreakfast" placeholder="早餐前两小时血糖（mmol/l）" required="true" value="${bg.bloodGlucoseBeforeBreakfast }">
+    <input type="text" name="bloodGlucoseBeforeBreakfast" id="bloodGlucoseBeforeBreakfast" placeholder="早餐前血糖（mmol/l）" required="true" value="${bg.bloodGlucoseBeforeBreakfast }">
     </div>
     <div data-role="fieldcontain">
     <label for="bloodGlucoseAfterBreakfast">早餐后：</label>
-    <input type="text" name="bloodGlucoseAfterBreakfast" id="bloodGlucoseAfterBreakfast" placeholder="早餐后两小时血糖（mmol/l）" required="true" value="${bg.bloodGlucoseAfterBreakfast }">
+    <input type="text" name="bloodGlucoseAfterBreakfast" id="bloodGlucoseAfterBreakfast" placeholder="早餐后血糖（mmol/L）" value="${bg.bloodGlucoseAfterBreakfast }">
      </div>
     <div data-role="fieldcontain">
     <label for="bloodGlucoseBeforeLunch">午餐前：</label>
-    <input type="text" name="bloodGlucoseBeforeLunch" id="bloodGlucoseBeforeLunch" placeholder="午餐前两小时血糖（mmol/l）" required="true" value="${bg.bloodGlucoseBeforeLunch }">
+    <input type="text" name="bloodGlucoseBeforeLunch" id="bloodGlucoseBeforeLunch" placeholder="午餐前血糖（mmol/L）" value="${bg.bloodGlucoseBeforeLunch }">
     </div>
     <div data-role="fieldcontain">
     <label for="bloodGlucoseAfterLunch">午餐后：</label>
-    <input type="text" name="bloodGlucoseAfterLunch" id="bloodGlucoseAfterLunch" placeholder="午餐后两小时血糖（mmol/l）" required="true" value="${bg.bloodGlucoseAfterLunch }">
+    <input type="text" name="bloodGlucoseAfterLunch" id="bloodGlucoseAfterLunch" placeholder="午餐后血糖（mmol/L）" value="${bg.bloodGlucoseAfterLunch }">
      </div>
     <div data-role="fieldcontain">
     <label for="bloodGlucoseBeforeDinner">晚餐前：</label>
-    <input type="text" name="bloodGlucoseBeforeDinner" id="bloodGlucoseBeforeDinner" placeholder="晚餐前两小时血糖（mmol/l）" required="true" value="${bg.bloodGlucoseBeforeDinner }">
+    <input type="text" name="bloodGlucoseBeforeDinner" id="bloodGlucoseBeforeDinner" placeholder="晚餐前血糖（mmol/L）" value="${bg.bloodGlucoseBeforeDinner }">
     </div>
     <div data-role="fieldcontain">
     <label for="bloodGlucoseAfterDinner">晚餐后：</label>
-    <input type="text" name="bloodGlucoseAfterDinner" id="bloodGlucoseAfterDinner" placeholder="晚餐后两小时血糖（mmol/l）" required="true" value="${bg.bloodGlucoseAfterDinner }">
+    <input type="text" name="bloodGlucoseAfterDinner" id="bloodGlucoseAfterDinner" placeholder="晚餐后血糖（mmol/L）"  value="${bg.bloodGlucoseAfterDinner }">
      </div>
       <div data-role="fieldcontain">
     <label for="bloodGlucoseBeforeSleep">睡前：</label>
-    <input type="text" name="bloodGlucoseBeforeSleep" id="bloodGlucoseBeforeSleep" placeholder="睡前血糖（mmol/l）" required="true" value="${bg.bloodGlucoseBeforeSleep }">
+    <input type="text" name="bloodGlucoseBeforeSleep" id="bloodGlucoseBeforeSleep" placeholder="睡前血糖（mmol/L）" value="${bg.bloodGlucoseBeforeSleep }">
      </div>
    
      <div data-role="fieldcontain">

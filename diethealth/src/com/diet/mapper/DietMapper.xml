@@ -64,7 +64,9 @@
     </delete>
     
     <select id="showBloodGlucoseInfo" parameterType="object" resultType="map">
-	select * FROM bloodglucose WHERE p_id = #{pId} and date = #{date}
+	select p_id,substring(date,6) as date,bloodGlucoseBeforeSleep,bloodGlucoseAfterDinner,bloodGlucoseBeforeDinner,
+	bloodGlucoseAfterLunch,bloodGlucoseBeforeLunch,bloodGlucoseAfterBreakfast,bloodGlucoseBeforeBreakfast
+	 FROM bloodglucose WHERE p_id = #{pId} and date = #{date}
 	</select>
 	
 	 <insert id="saveBloodGlucoseInfo" parameterType="object">
@@ -105,7 +107,9 @@
 	</select>
 	
 	<select id="getBloodGlucoseList" parameterType="object" resultType="map">
-		SELECT * FROM bloodglucose where p_id = #{pId}
+		SELECT p_id,substring(date,6) as date,bloodGlucoseBeforeSleep,bloodGlucoseAfterDinner,bloodGlucoseBeforeDinner,
+	bloodGlucoseAfterLunch,bloodGlucoseBeforeLunch,bloodGlucoseAfterBreakfast,bloodGlucoseBeforeBreakfast
+	 FROM bloodglucose where p_id = #{pId}
 		ORDER BY date DESC
 		LIMIT  #{pageNum},#{numPerPage}		
 	</select>

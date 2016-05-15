@@ -114,14 +114,14 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public int countPatientTotalWithState(Map<String, Object> map) {
-		return userDao.countPatientTotalWithState(map);
+	public int countPatientTotalByDoctorId(Map<String, Object> map) {
+		return userDao.countPatientTotalByDoctorId(map);
 	}
 	
 	@Override
-	public List<Map<String, Object>> getPatientListWithState(
+	public List<Map<String, Object>> getPatientListByDoctorId(
 			Map<String, Object> map) {
-		return userDao.getPatientListWithState(map);
+		return userDao.getPatientListByDoctorId(map);
 	}
 	
 	@Override

@@ -59,10 +59,10 @@ public interface  UserService {
     
 	public String deletePatientInfo(Map<String, Object> param);
 
-	public List<Map<String, Object>> getPatientListWithState(
+	public List<Map<String, Object>> getPatientListByDoctorId(
 			Map<String, Object> map);
 
-	public int countPatientTotalWithState(Map<String, Object> map);
+	public int countPatientTotalByDoctorId(Map<String, Object> map);
 
 	public String updatePatientState(Map<String, Object> param);
 

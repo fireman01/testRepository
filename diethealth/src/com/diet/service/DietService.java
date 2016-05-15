@@ -40,5 +40,9 @@ public interface  DietService {
 	public String saveAdvice(Map<String, Object> param);
 
 	public Map<String, Object> showAdviceInfo(Map<String, Object> param);
+
+	public int getTargetEnergy(String snacks, String pId);
+
+	public List<Map<String, Object>> getTypeList(String snacks);
 	
 }

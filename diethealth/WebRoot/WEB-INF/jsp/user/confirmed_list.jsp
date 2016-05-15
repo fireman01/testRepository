@@ -7,7 +7,7 @@ String path = request.getContextPath();
 <html>
 <head>
 
-<title>就诊患者列表</title>
+<title>患者列表</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta content="width=device-width" name="viewport" />
@@ -19,8 +19,7 @@ String path = request.getContextPath();
 <div data-role="page" id="pageone">
   <div data-role="header">
    <a href="" data-role="button" onclick="window.location.href='doctor_index'">首页</a>
-    <h1>就诊患者列表</h1>
-   <!--  <a href="#" data-role="button" onclick="window.location.href='doctor_add'">添加</a> -->
+    <h1>患者列表</h1>
   </div>
 
   <div data-role="content">

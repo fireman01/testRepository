@@ -26,7 +26,7 @@ String pId = session.getAttribute("pId").toString();
   <div data-role="content">
     <div data-role="navbar">
       <ul>
-        <li><a href="" data-icon="grid" onclick="window.location.href='../diet/diet_edit'">饮食录入</a></li>
+        <li><a href="" data-icon="grid" onclick="window.location.href='../diet/snack'">饮食录入</a></li>
         <li><a href="#" data-icon="info" onclick="window.location.href='../diet/diet_list'">饮食记录</a></li>
         <li><a href="#" data-icon="grid" onclick="window.location.href='user_edit'">信息修改</a></li>
       </ul>

@@ -6,7 +6,6 @@
 	String pId = session.getAttribute("pId").toString();
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>血糖记录</title>

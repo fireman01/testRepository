@@ -25,9 +25,9 @@ String name = session.getAttribute("name").toString();
   <div data-role="content">
     <div data-role="navbar">
       <ul>
-        <li><a href="" data-icon="grid" onclick="window.location.href='confirmed_list'">饮食记录</a></li>
+        <li><a href="" data-icon="grid" onclick="window.location.href='confirmed_list'">患者记录</a></li>
         <li><a href="#" data-icon="grid" onclick="window.location.href='doctor_edit'">信息修改</a></li>
-        <li><a href="#" data-icon="grid" onclick="window.location.href='confirm_list'">待确诊列表</a></li>
+        <li><a href="#" data-icon="grid" onclick="window.location.href='confirm_list'">患者信息</a></li>
       </ul>
     </div>
   </div>

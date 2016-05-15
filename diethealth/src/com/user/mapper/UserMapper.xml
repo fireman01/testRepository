@@ -8,8 +8,8 @@
 		SELECT * FROM doctor t where t.d_id = #{username} and t.password = #{password}
 	</select>
 	<insert id="saveUser" parameterType="object">
-	INSERT INTO patient(p_id,username,name,birthday,height,strength,pregnancy,weight,prepregnancyWeight,password,email,diabetesType,state)
-	            values(#{p_id},#{username},#{name},#{birthday},#{height},#{strength},#{pregnancy},#{weight},#{prepregnancyWeight},#{password},#{email},#{diabetesType},'1')
+	INSERT INTO patient(p_id,username,name,birthday,height,strength,pregnancy,weight,prepregnancyWeight,password,email,diabetesType)
+	            values(#{p_id},#{username},#{name},#{birthday},#{height},#{strength},#{pregnancy},#{weight},#{prepregnancyWeight},#{password},#{email},#{diabetesType})
 	</insert>
 	<select id="showUserInfo" parameterType="object" resultType="map">
 	select * FROM patient WHERE p_id = #{pId}
@@ -73,15 +73,15 @@
 		SELECT count(*) FROM patient
 	</select>
 	
-	 <select id="getPatientListWithState" parameterType="object" resultType="map">
-		SELECT t.* FROM patient t where state = #{state}
+	 <select id="getPatientListByDoctorId" parameterType="object" resultType="map">
+		SELECT t.* FROM patient t where 1=1
 		<include refid="patientsql" />
 		LIMIT  #{pageNum},#{numPerPage}		
 	</select>
 	
-	<select id="countPatientTotalWithState" parameterType="object"
+	<select id="countPatientTotalByDoctorId" parameterType="object"
 		resultType="int">
-		SELECT count(*) FROM patient where state = #{state} 
+		SELECT count(*) FROM patient where 1=1
 		<include refid="patientsql" />
 	</select>
 	<sql id="patientsql">

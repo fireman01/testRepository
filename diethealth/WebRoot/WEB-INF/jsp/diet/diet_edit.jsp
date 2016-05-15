@@ -24,15 +24,15 @@
 		</div>
 		<div data-role="content">
 			<div data-role="fieldcontain">
-				<p style="text-align:center;">目标能量(kal)：100</p>
+				<p style="text-align:center;">目标能量(kal)：<span id="targetenergy"></span></p>
 				<p style="text-align:center;">总能量(kal)：<span id="sumenergy">0</span></p>
 			</div>
 			<div data-role="fieldcontain">
-				<label for="diettype">餐饮类型：</label> <select name="diettype"
-					id="diettype" required="true">
-					<option value="0">早餐</option>
-					<option value="1">午餐</option>
-					<option value="2">晚餐</option>
+				<label for="diettype">餐饮类型：</label> 
+				<select name="diettype" id="diettype" required="true" onchange="setTargetEnergy()">
+				    <c:forEach var="diettype" items="${typeList}" varStatus="s">
+					    <option value="${diettype.value }">${diettype.name }</option>
+					 </c:forEach>
 				</select>
 			</div>
 			<div data-role="collapsible">
@@ -579,6 +579,7 @@ var vegetablesCount = 1;
 var drinkCount = 1;
 var nutCount = 1;
 var fruitsCount = 1;
+var targetsumenergy = parseInt(${energy});
 	var pId = "<%=pId%>";
 	function typechange(id,idnum){
 		var option = $('#'+id+"type"+idnum).find("select option:selected");
@@ -750,7 +751,24 @@ var fruitsCount = 1;
 			energy += parseInt(divs[i].innerText);
 		}
 		$('#sumenergy').text(energy);
+		if(parseInt($('#targetenergy').text())<energy){
+			$('#sumenergy').css("color","red");
+		}
 	}
-	
+	function setTargetEnergy(){
+		var type = $('#diettype').val();
+		var num = $('#diettype').find("option").length-3;
+		var tmpEnergy = 0;
+		if(type=="1"){
+			tmpEnergy = parseInt(targetsumenergy*0.1+targetsumenergy*(3-num)/15);
+		}else if(type=="2"||type=="3"){
+			tmpEnergy = parseInt(targetsumenergy*0.3+targetsumenergy*(3-num)/60);
+		}else if(type=="4"||type=="5"||type=="6"){
+			tmpEnergy = parseInt(targetsumenergy*0.1);
+		}
+		$('#targetenergy').text(tmpEnergy);	
+	}
+	setTargetEnergy();
+
 </script>
 </html>

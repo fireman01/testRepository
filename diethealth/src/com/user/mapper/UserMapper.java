@@ -70,9 +70,9 @@ public interface UserMapper {
 	
 	void deletePatientInfo(Map<String, Object> param);
 
-	int countPatientTotalWithState(Map<String, Object> map);
+	int countPatientTotalByDoctorId(Map<String, Object> map);
 
-	List<Map<String, Object>> getPatientListWithState(Map<String, Object> map);
+	List<Map<String, Object>> getPatientListByDoctorId(Map<String, Object> map);
 
 	void updatePatientState(Map<String, Object> param);
     

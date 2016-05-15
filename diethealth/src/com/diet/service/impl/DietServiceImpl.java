@@ -4,23 +4,22 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-
-
-
-
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.common.util.CacheUtil;
 import com.common.util.CommonUtil;
+import com.common.util.SpringContextUtil;
 import com.diet.mapper.DietMapper;
 import com.diet.service.DietService;
+import com.user.mapper.UserMapper;
 
 @Service("DietService")
 public class DietServiceImpl implements DietService {
@@ -107,11 +106,24 @@ public class DietServiceImpl implements DietService {
 		String today = sdf.format(new Date());
 		param.put("date", today);
 		if(dietDao.checkBloodGlucoseUpdate(param)>0){
-			dietDao.updateBloodGlucoseInfo(param);
+			dietDao.updateBloodGlucoseInfo(setDefaultValue(param));
 		}else{
-			dietDao.saveBloodGlucoseInfo(param);
+			dietDao.saveBloodGlucoseInfo(setDefaultValue(param));
 		}
 		return "1";
+	}
+	private Map<String,Object> setDefaultValue(Map<String, Object> param){
+		Set<Entry<String, Object>> sets = param.entrySet();
+		Iterator<Entry<String, Object>> it = sets.iterator();
+		while(it.hasNext()){
+			Entry<String, Object> entry = it.next();
+			if(null==entry.getValue()||"".equals(entry.getValue().toString())){
+				param.put(entry.getKey(), "0");
+			}else{
+				continue;
+			}
+		}
+		return param;
 	}
 	
 	@Override
@@ -167,17 +179,32 @@ public class DietServiceImpl implements DietService {
 			}
 			int type = (Integer)list.get(i).get("type");
 			switch(type){
-				case 0:{
+				case 1:{
 					list.get(i).put("type","早餐");
 					break;
 				}
-				case 1:{
+				case 2:{
 					list.get(i).put("type","午餐");
 					break;
 				}
-				case 2:{
+				case 3:{
 					list.get(i).put("type","晚餐");
 					break;
+				}
+				case 4:{
+					list.get(i).put("type","上午加餐");
+					break;
+				}
+				case 5:{
+					list.get(i).put("type","下午加餐");
+					break;
+				}
+				case 6:{
+					list.get(i).put("type","晚上加餐");
+					break;
+				}
+				default:{
+					list.get(i).put("type","夜宵");
 				}
 			}
 		}
@@ -240,5 +267,57 @@ public class DietServiceImpl implements DietService {
 	@Override
 	public Map<String, Object> showAdviceInfo(Map<String, Object> param) {
 		return dietDao.getAdviceInfo(param);
+	}
+	
+	@Override
+	public int getTargetEnergy(String snacks, String pId) {
+		int energy = 0;
+		UserMapper userMapper = (UserMapper)SpringContextUtil.getBeanById("userMapper");
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("pId", pId);
+		Map<String, Object> patient = userMapper.showUserInfo(param);
+		int height = (Integer)patient.get("height");
+		String strength = (String)patient.get("strength");
+		if("0".equals(strength)){
+			energy = (height-105)*30;
+		}else if("1".equals(strength)){
+			energy = (height-105)*34;
+		}else if("2".equals(strength)){
+			energy = (height-105)*38;
+		}
+		return energy;
+	}
+	
+	@Override
+	public List<Map<String, Object>> getTypeList(String snacks) {
+		List<Map<String,Object>> list = new LinkedList<Map<String,Object>>();
+		Map<String,Object> diettype1 = new HashMap<String, Object>();
+		diettype1.put("value", "1");
+		diettype1.put("name", "早餐");
+		list.add(diettype1);
+		Map<String,Object> diettype2 = new HashMap<String, Object>();
+		diettype2.put("value", "2");
+		diettype2.put("name", "午餐");
+		list.add(diettype2);
+		Map<String,Object> diettype3 = new HashMap<String, Object>();
+		diettype3.put("value", "3");
+		diettype3.put("name", "晚餐");
+		list.add(diettype3);
+		String[] types = snacks.split("|");
+		for(int i=0; i<types.length; i++){
+			Map<String, Object> type = new HashMap<String, Object>();
+			if(!"|".equals(types[i])&&!"".equals(types[i])){
+				type.put("value", types[i]);
+				if("4".equals(types[i])){
+					type.put("name", "上午加餐");
+				}else if("5".equals(types[i])){
+					type.put("name", "下午加餐");
+				}else if("6".equals(types[i])){
+					type.put("name", "晚上加餐");
+				}
+				list.add(type);
+			}
+		}
+		return list;
 	}
 }

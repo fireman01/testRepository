@@ -108,6 +108,12 @@ function onSubmit(){
 	   }else if(name==""){
 		   alert("真实姓名不能为空！");
 		   return false;
+	   }else if(height==""){
+		   alert("身高不能为空!");
+		   return false;
+	   }else if(strength==""){
+		   alert("工作强度不能为空!");
+		   return false;
 	   }else{
 		   $.post("user/add_user",{name:name,username:username,birthday:birthday,
 				height:height,prepregnancyWeight:prepregnancyWeight,weight:weight,

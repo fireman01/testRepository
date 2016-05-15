@@ -30,6 +30,10 @@ public class DietController {
 	
 	@RequestMapping("/diet_edit")
 	public  String toDietForm(HttpServletRequest request, Model model){
+		String snacks = request.getParameter("snacks");
+		String pId = (String)request.getSession().getAttribute("pId");
+		model.addAttribute("energy",dietService.getTargetEnergy(snacks,pId));
+		model.addAttribute("typeList",dietService.getTypeList(snacks));
 		model.addAttribute("mainfoodList",CacheUtil.getInstance().getMainFoodList());
 		model.addAttribute("meatList",CacheUtil.getInstance().getMeatList());
 		model.addAttribute("vegetablesList",CacheUtil.getInstance().getVegetablesList());
@@ -43,6 +47,11 @@ public class DietController {
 	@RequestMapping("food_add")
 	public String doctorAdd(HttpServletRequest request){
 		return "diet/food_add";
+	}
+	
+	@RequestMapping("snack")
+	public String toSnack(HttpServletRequest request){
+		return "diet/snack";
 	}
 	
 	@RequestMapping("/saveDiet")
